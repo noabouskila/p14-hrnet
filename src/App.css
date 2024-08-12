@@ -16,14 +16,84 @@ header div img{
 }
 .header-link-employees{
   text-decoration: none;
-  color: black;
-  background: #ede9e9;
-  padding: 1%;
+  color: #686e45;
+  background: white;
+  padding: 1% 2%;
   border-radius: 15px;
+  font-weight: 600;
 }
 
 footer{ 
   background-color: #93ad1859; 
   display: flex;
   justify-content: center;
+}
+footer img{
+  width: 10%;
+}
+
+.container{
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  background-color:#94ad1852; 
+  border-radius: 5%;
+  /* min-width: 300px;   */
+  align-items: center;
+  box-shadow: lightgrey 3px 3px 18px 0px;
+}
+form h1{
+  color: #686e45;
+}
+form div{
+  /* margin-bottom: 1%;
+  display: flex;
+  justify-content: space-between;
+  min-width: 50px; */
+  margin-bottom: 1%;
+  display: flex;
+  width: 380px;
+  justify-content: space-between;
+
+}
+form label{
+  margin-right: 10px;
+}
+form input , form select{
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  padding: 5px;
+  width: 70%;
+  
+  
+}
+.react-datepicker__input-container{
+  width: 139% !important;
+
+}
+.react-datepicker-wrapper{
+  width: 72%;
+}
+form fieldset{
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+form button{
+  padding: 2%;
+  width: 30%;
+  margin-top : 10%;
+  background-color: #686e45;
+  color: white;
+  border : none;
+  border-radius: 15px;
+  box-shadow: #808080ad 1px 2px 9px 0px;
+  font-weight: 400 ;
+  font-size: large;
 }
