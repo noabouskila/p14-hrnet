@@ -5,12 +5,19 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../App.css';
 
+// importation modal ici
+import  Modal from '@noabouskil/p14-modal/dist/Modal/Modal';
+import '@noabouskil/p14-modal/dist//Modal/Modal.css';
+
+
 
 function CreateEmployees() {
 
     // destructuration pour importer le setEmployee avec usecontext
     const {setEmployees} = useContext(EmployeesContext)
     const [confirmationMessage, setConfirmationMessage] = useState('');
+    const [isModalOpen , setModalIsOpen] = useState(false)
+
 
     // 1) creation etat initial de l'employee 
     const [employee , setEmployee] = useState({
@@ -65,8 +72,12 @@ function CreateEmployees() {
         e.preventDefault();
         // mise a jour de l'etat de tous les employees
         setEmployees((prevEmployees) => [...prevEmployees, employee])
-        setConfirmationMessage('Employee created successfully!');
+        // setConfirmationMessage('Employee created successfully!');
+        setModalIsOpen(true) //ouvrir la modale apres la soumission du form
+    }
 
+    const closeModal = () => {
+        setModalIsOpen(false)
     }
 
     return (
@@ -156,7 +167,16 @@ function CreateEmployees() {
 
                 <button type='submit'>Save</button>
 
-                <p>{confirmationMessage}</p>
+                <p>{confirmationMessage}</p> 
+                {/* Affichage de la modale */}
+                {isModalOpen && (
+                    
+                    <Modal isOpen={isModalOpen} onClose={closeModal}>
+                        <h2>Employee created Succesfully</h2>
+                        <button onClick={closeModal}>Close</button>
+                    </Modal>
+                )}
+
             </form>
 
         </div>
