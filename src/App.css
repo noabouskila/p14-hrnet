@@ -33,7 +33,7 @@ footer img{
 }
 
 .container{
-  height: 700px;
+  height: 900px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +51,7 @@ form{
 form h1{
   color: #686e45;
 }
-form div{
+form > div{
   /* margin-bottom: 1%;
   display: flex;
   justify-content: space-between;
@@ -83,6 +83,11 @@ form input , form select{
 form fieldset{
   border-radius: 5px;
   border: 1px solid grey;
+  width: 100%;
+}
+form fieldset div{
+  display: flex;
+  justify-content: space-between;
 }
 
 form button{
@@ -96,4 +101,32 @@ form button{
   box-shadow: #808080ad 1px 2px 9px 0px;
   font-weight: 400 ;
   font-size: large;
+}
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+/* employee list */
+.table-employee{
+  background-color:#94ad1852; 
+  padding: 4%;
+  border-radius: 15px;
+  box-shadow: grey 1px 2px 18px 0px;
+  text-align: center;
+  color : #686e45 ;
+  width: 50%;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+/* juste pour essai */
+.container{
+  display: flex;
+  flex-direction: column;
+  
+  
 }
