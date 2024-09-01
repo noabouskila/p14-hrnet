@@ -11,9 +11,9 @@ export default function TableToolbar() {
   const { searchQuery, setSearchQuery } = useContext(EmployeesContext);
     
   
-  // handle search input change
+  // Mise à jour de searchQuery
   const handleSearchChange = (event) => {
-      setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
 
@@ -27,7 +27,7 @@ export default function TableToolbar() {
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search..."
-        variant="outlined"
+        variant="outlined" // css
         size="small"
         sx={{ marginLeft: 'auto', marginRight: 2 }}
       />
@@ -37,5 +37,5 @@ export default function TableToolbar() {
 
 TableToolbar.propTypes = {
   searchQuery: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
+  handleSearchChange: PropTypes.func.isRequired,
 };

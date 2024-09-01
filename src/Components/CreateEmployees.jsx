@@ -1,4 +1,4 @@
-import React, {useContext , useState , useCallback} from 'react';
+import React, {useContext , useState} from 'react';
 import { EmployeesContext } from '../context/EmployeesContext';
 
 import '../App.css';
@@ -27,6 +27,8 @@ function CreateEmployees() {
     const [isModalOpen , setModalIsOpen] = useState(false)
     const [errorMessage, setErrorMessage] = useState('');
 
+    
+    // //////////////////////////////////
     // 1) creation etat initial de l'employee 
     const initialEmployeeState ={
         firstName: '',
@@ -45,11 +47,12 @@ function CreateEmployees() {
 
     const [employee , setEmployee] = useState(initialEmployeeState)
 
-    // reinitialisation du formualire  (apres la soummission)
-    const resetForm = useCallback(() => {
+    // reinitialisation du formualire  (apres la soummission) 
+    const resetForm = () => {
         setEmployee(initialEmployeeState);
-    }, []);
+    };
 
+    // //////////////////////////////////
     // 2) mise a jour de l'etat  local au changement de l'input 
 
     // a) gestion de mise a jour des input normaux
@@ -73,15 +76,22 @@ function CreateEmployees() {
         }));
     };
 
-    // b) gestion de mise a jour des input de date avec le pluggin datePicker
+    //  formattage dates
+    const formatDate = (date) => {
+        return date ? new Date(date).toLocaleDateString() : null;
+    };
+
+    // c) gestion de mise a jour des input de date avec le pluggin datePicker
     const handleDateChange = (date, name) => {
 
         // Vérification que la startDate est au moins 16 ans après la date de naissance*
 
+        const formattedDate = formatDate(date);
+
         const validateDates = (birthDate, startDate)=>{
-            const birth = new Date(birthDate);
+            const birth = new Date(birthDate); // conversion en objet date
             const start = new Date(startDate);
-            const ageAtStart = start.getFullYear() - birth.getFullYear();
+            const ageAtStart = start.getFullYear() - birth.getFullYear();// recupere l'année 
     
             const isValidAge = ageAtStart > 16 || (ageAtStart === 16 && start >= new Date(birth.setFullYear(birth.getFullYear() + 16)));
     
@@ -97,51 +107,38 @@ function CreateEmployees() {
 
         // Si les deux dates sont présentes, effectuer la validation
         if(name === 'startDate' && employee.dateOfBirth ) {
-            validateDates(employee.dateOfBirth, date);
+            validateDates(employee.dateOfBirth, formattedDate);
 
         // Si la date de naissance est modifiée après la sélection de la date de début
         }else if(name === 'dateOfBirth' && employee.startDate) {
-            validateDates(date, employee.startDate);
+            validateDates(formattedDate, employee.startDate);
         }
        
         // Mise à jour de l'état de l'employé avec la nouvelle date
         setEmployee((prevEmployee) => ({
             ...prevEmployee,
-            [name]: date,
+            [name]: formattedDate,
         }));
     };
     
 
+    // //////////////////////////////////
     // 3) soumission du formulaire et mise a jour de l'etat global 
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-
-        // Formatage des dates
-        const formattedDateOfBirth = employee.dateOfBirth ? new Date(employee.dateOfBirth).toLocaleDateString() : null;
-        const formattedStartDate = employee.startDate ? new Date(employee.startDate).toLocaleDateString() : null;
-
-
-        // Mise à jour de l'état de tous les employés avec un nouvel ID
-        const newEmployee = {
-            ...employee,
-            dateOfBirth: formattedDateOfBirth,
-            startDate: formattedStartDate,
-        };
-
-        setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+        setEmployees((prevEmployees) => [...prevEmployees, employee]);
         setModalIsOpen(true) //ouvrir la modale apres la soumission du form
 
         // Réinitialiser le formulaire
         resetForm()
     }
 
+    // //////////////////////////////////
+    // 4) fermeture modale
     const closeModal = () => {
         setModalIsOpen(false)
     }
-
-
-
 
 
     return (

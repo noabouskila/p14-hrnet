@@ -9,7 +9,7 @@ export default function Datalist() {
     const { employees  , searchQuery } = useContext(EmployeesContext);
     
 
-   // 1) Utilisation de useMemo pour mémoriser la liste filtrée
+   // 1) Filtre employé depuis tabletoolbar : Utilisation de useMemo pour mémoriser la liste filtrée
    const filteredEmployees = useMemo(() => {
     return employees.filter((employee) =>
       `${employee.firstName} ${employee.lastName} ${employee.dateOfBirth} ${employee.startDate} ${employee.department} ${employee.address.street} ${employee.address.city} ${employee.address.state} ${employee.address.zipCode}`
@@ -32,7 +32,7 @@ export default function Datalist() {
         { field: 'zipCode', headerName: 'Zip Code', flex: 1 },
     ];
 
-    // 3)  Transformer les données pour les rendre compatibles avec le DataGrid ("aplatit" les données pour etre directement accessible)
+    // 3) Transformer les données  filtrées pour les rendre compatibles avec le DataGrid ("aplatit" les données pour etre directement accessible)
     const rows = filteredEmployees.map((employee, index) => ({
         id: index,
         firstName: employee.firstName,
@@ -52,7 +52,9 @@ export default function Datalist() {
   return ( 
     <DataGrid
         autoHeight
+        // Affichage données filtrées 
         rows={rows}
+        // configuration collonnes depuis le tableau columns
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5, 10, 25]}
