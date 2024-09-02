@@ -27,7 +27,7 @@ function CreateEmployees() {
     const [isModalOpen , setModalIsOpen] = useState(false)
     const [errorMessage, setErrorMessage] = useState('');
 
-    
+
     // //////////////////////////////////
     // 1) creation etat initial de l'employee 
     const initialEmployeeState ={
@@ -76,61 +76,70 @@ function CreateEmployees() {
         }));
     };
 
-    //  formattage dates
-    const formatDate = (date) => {
-        return date ? new Date(date).toLocaleDateString() : null;
-    };
+
+    // Vérification que la startDate est au moins 16 ans après la date de naissance*
+    const validateDates = (birthDate, startDate)=>{
+
+        const birth = new Date(birthDate); // conversion en objet date
+        const start = new Date(startDate);
+        const ageAtStart = start.getFullYear() - birth.getFullYear();// recupere l'année 
+
+        const isValidAge = ageAtStart > 16 || (ageAtStart === 16 && start >= new Date(birth.setFullYear(birth.getFullYear() + 16)));
+
+        if (!isValidAge) {
+            setErrorMessage("The start date must be at least 16 years after the date of birth.");
+            return false;
+        }
+        else{
+            setErrorMessage(''); // Effacer le message d'erreur si la condition est respectée
+        }
+        return isValidAge;
+
+    }
 
     // c) gestion de mise a jour des input de date avec le pluggin datePicker
     const handleDateChange = (date, name) => {
 
-        // Vérification que la startDate est au moins 16 ans après la date de naissance*
-
-        const formattedDate = formatDate(date);
-
-        const validateDates = (birthDate, startDate)=>{
-            const birth = new Date(birthDate); // conversion en objet date
-            const start = new Date(startDate);
-            const ageAtStart = start.getFullYear() - birth.getFullYear();// recupere l'année 
-    
-            const isValidAge = ageAtStart > 16 || (ageAtStart === 16 && start >= new Date(birth.setFullYear(birth.getFullYear() + 16)));
-    
-            if (!isValidAge) {
-                setErrorMessage("The start date must be at least 16 years after the date of birth.");
-                return;
-            }
-            else{
-                setErrorMessage(''); // Effacer le message d'erreur si la condition est respectée
-            }
-    
-        }
-
         // Si les deux dates sont présentes, effectuer la validation
         if(name === 'startDate' && employee.dateOfBirth ) {
-            validateDates(employee.dateOfBirth, formattedDate);
+            validateDates(employee.dateOfBirth, date);
 
         // Si la date de naissance est modifiée après la sélection de la date de début
         }else if(name === 'dateOfBirth' && employee.startDate) {
-            validateDates(formattedDate, employee.startDate);
+            validateDates(date, employee.startDate);
         }
        
+
         // Mise à jour de l'état de l'employé avec la nouvelle date
         setEmployee((prevEmployee) => ({
             ...prevEmployee,
-            [name]: formattedDate,
+            // [name]: formattedDate,
+            [name]: date,
+
         }));
+       
     };
     
 
     // //////////////////////////////////
     // 3) soumission du formulaire et mise a jour de l'etat global 
     const handleSubmit = (e) =>{
+       
+        // a)  preventDefault
         e.preventDefault();
 
+        // b) Vérifier la validité des dates avant de soumettre
+        const isValidDate = validateDates(employee.dateOfBirth, employee.startDate);
+
+        if (!isValidDate) {
+            return; // Bloque la soumission du formulaire si les dates ne sont pas valides
+        }
+
+        // c) mise à jour
         setEmployees((prevEmployees) => [...prevEmployees, employee]);
         setModalIsOpen(true) //ouvrir la modale apres la soumission du form
 
-        // Réinitialiser le formulaire
+        // d) Réinitialiser le formulaire
         resetForm()
     }
 
@@ -177,6 +186,9 @@ function CreateEmployees() {
                         showMonthDropdown 
                         // : Change le comportement des menus déroulants pour permettre une sélection rapide (au lieu de devoir faire défiler un par un).
                         dropdownMode="select" 
+
+                        // Empêcher la saisie manuelle via le clavier
+                        onKeyDown={(e) => e.preventDefault()} // Empêche la saisie au clavier
                         
                     />
                 </div>
@@ -190,7 +202,7 @@ function CreateEmployees() {
                         dateFormat="MM/dd/yyyy"
                         placeholderText="Select start date"
                         required
-
+                       
                         // : Affiche un menu déroulant permettant de sélectionner l'année.
                         showYearDropdown 
                         // : Affiche un menu déroulant permettant de sélectionner le mois.
@@ -198,6 +210,9 @@ function CreateEmployees() {
                         // : Change le comportement des menus déroulants pour permettre une sélection rapide (au lieu de devoir faire défiler un par un).
                         dropdownMode="select" 
                        
+
+                        // Empêcher la saisie manuelle via le clavier
+                        onKeyDown={(e) => e.preventDefault()} // Empêche la saisie au clavier
                     />
                 </ div>
 

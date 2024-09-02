@@ -34,8 +34,3 @@ export default function TableToolbar() {
     </Box>
   );
 }
-
-TableToolbar.propTypes = {
-  searchQuery: PropTypes.string.isRequired,
-  handleSearchChange: PropTypes.func.isRequired,
-};

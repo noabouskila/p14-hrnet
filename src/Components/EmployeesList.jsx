@@ -1,5 +1,4 @@
-import React ,{useContext} from 'react';
-import { EmployeesContext } from '../context/EmployeesContext';
+import React from 'react';
 import '../App.css';
 import Datalist from '../features/Datalist';
 import TableToolbar from '../features/TableToolbar';
