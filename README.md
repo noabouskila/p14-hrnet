@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Projet P14: Migration de jQuery vers React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce projet est une refonte d'un site existant, initialement construit avec jQuery, en utilisant React. Le but est de moderniser l'application tout en intégrant un nouveau plugin `myModal`.
 
-## Available Scripts
+## Technologies 
 
-In the project directory, you can run:
+- **React** : Bibliothèque JavaScript pour construire des interfaces utilisateur.
+- **JavaScript** : Langage principal utilisé pour la logique de l'application.
 
-### `npm start`
+## Installation et lancement du projet
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Forkez le repository.
+2. Clonez-le sur votre ordinateur.
+3. Exécutez la commande `npm install` pour installer les dépendances.
+4. Exécutez `npm start` pour lancer l'application en mode développement.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dépendances
 
-### `npm test`
+Voici les dépendances utilisées dans le projet :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `@emotion/react` : Outils pour la gestion de styles en React.
+- `@emotion/styled` : API pour le styling basé sur les composants.
+- `@mui/material` et `@mui/icons-material` : Composants Material-UI pour React.
+- `react-router-dom` : Bibliothèque pour la gestion des routes dans une application React.
+- `react-datepicker` : Composant calendrier pour sélectionner des dates.
+- `@noabouskil/p14-modal` : Plugin Modal personnalisé.
+- Autres dépendances pour les tests et la gestion des dates.
 
-### `npm run build`
+## Auteurs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Développeur front-end : **Noa Bouskila** - [Profil GitHub](https://github.com/noabouskila)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Fonctionnalités
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Le projet contient deux routes dans `RoutesApp`. Les données des employés sont stockées dans un `createContext` avec `localStorage`. Voici quelques composants utilisés :
 
-### `npm run eject`
+- **Composants Ant Design** :
+  - `react-datepicker` : Sélecteur de date.
+  - `Mui DataGrid` : Table de données.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Prérequis
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Node.js](https://nodejs.org/en/) : Assurez-vous que Node.js est installé sur votre machine.
+- Familiarité avec les Hooks et `createContext`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
