@@ -135,7 +135,7 @@ function CreateEmployees() {
             return; // Bloque la soumission du formulaire si les dates ne sont pas valides
         }
 
-        // c) mise à jour
+        // c) Mise à jour de l'état global des employés avec le nouvel employé (qui inclus la synchro avec le localstorage)
         setEmployees((prevEmployees) => [...prevEmployees, employee]);
         setModalIsOpen(true) //ouvrir la modale apres la soumission du form
 

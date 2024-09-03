@@ -13,8 +13,8 @@ function EmployeesList() {
 
     return (
         <div className='container'>
-            <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Box sx={{   display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+            <Paper sx={{ width: '80%', mb: 2 }}>
 
                 <TableToolbar/>
                 <Datalist/>

@@ -44,7 +44,6 @@ form{
   padding: 3%;
   background-color:#94ad1852; 
   border-radius: 5%;
-  /* min-width: 300px;   */
   align-items: center;
   box-shadow: lightgrey 3px 3px 18px 0px;
 }
@@ -52,10 +51,6 @@ form h1{
   color: #686e45;
 }
 form > div{
-  /* margin-bottom: 1%;
-  display: flex;
-  justify-content: space-between;
-  min-width: 50px; */
   margin-bottom: 1%;
   display: flex;
   width: 380px;
